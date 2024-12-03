@@ -1,5 +1,7 @@
 import SearchForm from "@/components/SearchForm";
 import StartupCard from "@/components/StartupCard";
+import { sanityFetch } from "@/sanity/lib/live";
+import { STARTUPS_QUERY } from "@/sanity/lib/quries";
 import React from "react";
 
 async function Home({
@@ -8,22 +10,10 @@ async function Home({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
-  const posts = [
-    {
-      _id: 1,
-      _createdAt: new Date(),
-      views: 55,
-      description: "This is the description",
-      category: "Robots",
-      image:
-        "https://t3.ftcdn.net/jpg/05/59/87/12/240_F_559871209_pbXlOVArUal3mk6Ce60JuP13kmuIRCth.jpg",
-      title: "Mr. Robot",
-      author: {
-        _id: 1,
-        name: "Adrian",
-      },
-    },
-  ];
+
+  const params = { search: query || null };
+
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
   return (
     <>
