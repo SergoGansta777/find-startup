@@ -1,11 +1,30 @@
+import SearchForm from "@/components/SearchForm";
 import React from "react";
 
-function Page() {
+async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ query?: string }>;
+}) {
+  const query = (await searchParams).query;
+
   return (
     <>
-      <h1 className="text-2xl text-red-200">Home g</h1>
+      <section className="pink_container">
+        <h1 className="heading">
+          Pitch Your Startup, <br />
+          Connect With Entrepreneurs
+        </h1>
+
+        <p className="sub-heading !max-w-3xl">
+          Submit Ideas, Vote on Pitches, and Get Noticed in Virtual
+          Competitions.
+        </p>
+
+        <SearchForm query={query} />
+      </section>
     </>
   );
 }
 
-export default Page;
+export default Home;
