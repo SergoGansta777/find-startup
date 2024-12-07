@@ -48,7 +48,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
             alt="author avatar"
             width={48}
             height={48}
-            className="rounded-full"
+            className="rounded-full shadow-md"
           />
         </Link>
       </div>
